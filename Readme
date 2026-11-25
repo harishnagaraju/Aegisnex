@@ -1,0 +1,21 @@
+. Product architecture
+AegisNex is an AI-powered endpoint health and security agent. The initial release targets Windows 10/11 x64 systems running on Intel or AMD processors. The architecture is designed so that the endpoint collection and deterministic detection layers can operate locally, without a permanent cloud connection.
+The product is intended to grow beyond a Windows-only monitor. The initial Windows implementation establishes the endpoint-agent foundation; the intelligence and investigation concepts should remain portable where practical.
+1.1 Technology decisions — frozen for MVP
+Layer	Technology / approach
+Endpoint agent	Go
+Windows integration	Native Windows APIs
+System telemetry	Performance Counters and process APIs
+Security events	Windows Event Log
+Advanced telemetry	ETW; later Sysmon integration
+Local detection	Go rule engine
+Behavioural analysis	Statistical baseline engine
+Local AI	Ollama
+Cloud AI	OpenRouter
+Agent orchestration	Go
+Local storage	SQLite
+Dashboard	React
+Communication	Local REST API initially
+Packaging	Windows executable and installer
+
+The endpoint agent must not depend on Docker, PostgreSQL or a permanently running cloud server.
